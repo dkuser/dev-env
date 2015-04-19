@@ -3,3 +3,13 @@
   roles:
     - my_shell
     - my_vim
+
+
+  tasks: 
+  - name: install tmux
+    apt: pkg=tmux state=latest
+    sudo: yes
+
+  - name: config tmux
+    template: src="templates/.tmux.conf" dest="{{ ansible_env.HOME }}/.tmux.conf" mode=644
+    tags: 'tmux'
